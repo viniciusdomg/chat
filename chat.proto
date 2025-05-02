@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+service ChatService {
+  // Envia uma mensagem ao servidor
+  rpc SendMessage (ChatMessage) returns (Empty);
+
+  // Conecta o cliente e ouve mensagens do servidor
+  rpc ReceiveMessages (Client) returns (stream ChatMessage);
+}
+
+message ChatMessage {
+  string username = 1;
+  string message = 2;
+  int64 timestamp = 3;
+}
+
+message Client {
+  string username = 1;
+}
+
+message Empty {}
